@@ -1,0 +1,23 @@
+# Precision integers
+n = 2    #pocet cylindrov
+mmax = 20
+mrow = np.arange(-mmax,mmax+1)
+m = mrow.reshape((-1,1))
+countf = 501
+
+# Environment variables and constants
+frequencies = np.linspace (0, 1, countf)
+epsilon = np.array([ 80 ]*n)
+mi = 1.
+zeta = np.sqrt (mi/epsilon)
+
+# Geometry
+R = np.array([0.45]*n)
+x = np.array([0, 0])
+y = np.array([-0.5, 0.5])
+gama = np.empty((n,n), dtype=np.float64)
+a = np.empty((n,n), dtype=np.float64)
+for i in range(n):
+	for j in range(n):
+		a[i,j]		= np.sqrt  ( (x[j]-x[i])**2 + (y[j]-y[i])**2  )
+		gama[i,j]	= np.angle ( (x[j]-x[i])    + (y[j]-y[i]) *1j )
